@@ -17,6 +17,8 @@ I was thinking directly compare the "actualelapsedtime" with "crselapsedtime", b
 
 So my idea would be: start from a specific airline between two fixed city, check if (("crsdeptime" late than "deptime") && ("arrtime" earlier than "crsarrtime")), if the percentage of this happens above some threshold, we would say they are padding their schedule. Then it would be easy to extended to other city and airline. 
 
+#===============================================================
+
 From Gina:
 
 These are interesting ideas, Shangjia. I think writing ideas down and sharing assures that we are all on the same page. Thank you for starting this thought thread. 
@@ -24,3 +26,25 @@ These are interesting ideas, Shangjia. I think writing ideas down and sharing as
 I am having a hard time getting my head around your second idea. Specifically, why we are only interested in flights that leave late and arrive early. Is this a way to subset the flights to eliminate the larger delays (i.e the delays that are larger than the padding allows)?  We won't eliminate the smaller delays that fall within the padding. 
 
 I was wondering if we might be able to start even more simply by looking just at the crselapsed over time (Do we even need to think about actual times at all?).  If one assumes that the distances stay the same and airspeed hasn't changed much over the 25 year period, then padding would show up as longer crselapsed for the same flight number. Plotting crselapsed over time should show some kind of an upward trend. 
+
+#===============================================================
+
+From Shangjia:
+
+Actually there are same idea, sorry I didn't explain myself clearly. I just thought it would be a strong evidence if we found the plane took off late and land earlier or on time. But it seem kinda complicate the problem, it may be utilized to explain the problem statement in the report.
+
+I just thought about your idea, it make sense. Since we have the 25 years data, we can compare in the same airline, to see if the flight period increased. Investigating the crselapsedtime is a simply and straightforward way. 
+
+BTW, I made a document in the repository to document our discussion so we can show Charlotte our work, also make us work tractable, so we can go back now and then to check if we are in the right track, and keep us in the same page. 
+
+After last project, I checked other group's Github repository, they showed all the work and make it organized. So I guess we can try this time. 
+
+> If you want to upload a document, just create a new script but is text file instead of R script, then do the same way as we push the code. Make the name readable would helps.
+> If you want to push a R code in the repository, please name the file as a readable one, like: project2_v1_sd, (project2, version 1, sd (my name initial)) then we'll know what/whose/which version code is this. When you want to implement another idea, please don't overwrite the code you wrote, you may need it later. you could restart one and name it as another version. When we finished the project, I will upload all the final files which will be denoted by $$_final. This is just one way I thought, if you have a better idea, let me konw.  
+> I know sometimes write comments in the code is annoying, but comments would be really helpful for others to read your code, and also useful when you look back to this project.
+> After all the discussion, If we could finalize a direction or method, that would help proceed the project faster. When we fix it, I will generate one and push it into repository.
+
+Have a good weekend, great team!
+
+#===============================================================
+
