@@ -1,0 +1,26 @@
+From Shangjia:
+
+This is a long email about my thoughts and findings related to project question, (sorry for such long email) if you have time, hope you can read a little. I just searched and read the news from google. 
+
+"Delta Air Lines Flight 715 from New York to Los Angeles now takes more than seven hours to fly across the country, according to the airline's March schedule. That's an hour longer than the same flight in the same type of aircraft took in 1996. A Phoenix-Las Vegas flight at Southwest Airlines that used to be scheduled at 60 minutes now gets 80 minutes. What was once a two-hour American Airlines trip from Chicago to Newark, N.J., now is two-and-a-half hours, according to the airline's schedule."
+
+First, my understand of the terminology:
+crs: Computer Reservation System
+deptime: accutal departure time
+crsdeptime: airline scheduled departure time (or the time they should take off)
+arrtime: acctual arrive time
+crsarrtime: airline scheduled (expected) arrive time (or the time they should land)
+
+So, padding may means, they enlarge the time schedule and make the flight on time, but actually it's late. But we don't have the old time schedule to prove they extended the time interval. Then, my idea is: if a flight departure late, then it should arrive late. But, if it's late and still arrive on time or earlier, this may mean they are padding the schedule. (Based on my understanding of the " schedule padding")
+
+I was thinking directly compare the "actualelapsedtime" with "crselapsedtime", but I just thought the difference may won't suggest if they are padding the schedule, because they sometime departure earlier. You can check the dataset, sometime they departure earlier, and arrive earlier, and the "actualelapsedtime" less than "crselapsedtime", but this may not suggest they are padding the schedule. 
+
+So my idea would be: start from a specific airline between two fixed city, check if (("crsdeptime" late than "deptime") && ("arrtime" earlier than "crsarrtime")), if the percentage of this happens above some threshold, we would say they are padding their schedule. Then it would be easy to extended to other city and airline. 
+
+From Gina:
+
+These are interesting ideas, Shangjia. I think writing ideas down and sharing assures that we are all on the same page. Thank you for starting this thought thread. 
+
+I am having a hard time getting my head around your second idea. Specifically, why we are only interested in flights that leave late and arrive early. Is this a way to subset the flights to eliminate the larger delays (i.e the delays that are larger than the padding allows)?  We won't eliminate the smaller delays that fall within the padding. 
+
+I was wondering if we might be able to start even more simply by looking just at the crselapsed over time (Do we even need to think about actual times at all?).  If one assumes that the distances stay the same and airspeed hasn't changed much over the 25 year period, then padding would show up as longer crselapsed for the same flight number. Plotting crselapsed over time should show some kind of an upward trend. 
