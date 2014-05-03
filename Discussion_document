@@ -77,3 +77,6 @@ Have a good weekend, great team!
 
 #===============================================================
 
+From Gina
+
+Hi Shangjia --I am confused by two things: 1)why we should use text files instead of r files for our code? This seems like layering on an extra step that isn't necessary. 2) I am not sure why we are needing to put a versioning system on top of github. I thought the point of github was that it does the versioning for us. 
