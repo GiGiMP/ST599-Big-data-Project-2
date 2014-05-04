@@ -80,3 +80,15 @@ Have a good weekend, great team!
 From Gina
 
 Hi Shangjia --I am confused by two things: 1)why we should use text files instead of r files for our code? This seems like layering on an extra step that isn't necessary. 2) I am not sure why we are needing to put a versioning system on top of github. I thought the point of github was that it does the versioning for us. 
+#=========================================================================
+
+Thoughts from Gina based on First visual code:
+
+I did some preliminary work at looking just at crselapsed time for flights from PDX to SFO on united. If you run the code, you should be able to see a couple of cool things. 1) clear evidence for padding, esp from 2004 on. 2) you can really see a drop off in flights after 9/11/2001. It doesn’t have anything to do with the project, but it was interesting none the less. 
+
+Some thought on the graph: I could imagine that even without padding, the crselapsed time may increase with increasing congesting of flights in general. With more flights coming and going, it would add up to slight increases in time needed to get flight from point A to point B. This may have some bearing on what we need to do since we should probably rule out increaseing number of flights particularly post 2004 when it looks like the most dramatic increase in scheduled time for this flight. 
+
+Population question: We should gather ideas for how we will use the “whole data set” to show this. 
+
+Things that I am having difficulty doing:
+I was thinking we could “smooth” the graph out by just plotting monthly averages (instead of daily averages). I can group by and summarize to get monthly averages, but am having trouble remembering how to set up year and month into a date that I can graph. 
