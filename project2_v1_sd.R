@@ -1,5 +1,7 @@
 library(dplyr)
-
+library(ggplot2)
+library(plyr)
+big_font <- theme_grey(base_size = 24)
 endpoint <- "flights.cwick.co.nz"
 user <- "student"
 password <- "password"
@@ -29,13 +31,19 @@ pdx2sfo_ua_byday<-summarize(pdx2sfo.uabyday, mean_crselapsed=mean(crselapsedtime
 pdx2sfo.united<-collect(pdx2sfo_ua_byday)
 pdx2sfo.united$date<-with(pdx2sfo.united, ISOdate(year, month, dayofmonth))
 
+
 library(ggplot2)
-qplot(date, mean_crselapsed, data=pdx2sfo.united) + 
+qplot(date, mean_crselapsed, data=pdx2sfo.united) + big_font +
   geom_smooth()
 
 #If you want to look at the data with a line geom but I think it isn't very helpful and it takes forever!
-qplot(date, mean_crselapsed, data=pdx2sfo.united, geom="line") +
+qplot(date, mean_crselapsed, data=pdx2sfo.united, geom="line") + big_font +
   geom_smooth()
 # there is definitely cyclic patterns. I want to  look at a 2 year spread to see whats going on.
 # I will need to look through old notes as I am having trouble remembering how to manipulate
 # dates.
+
+#use the library(lubricate), there is a function we used in time series class called
+#called parse_date_time, it should help. 
+
+
