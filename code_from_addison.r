@@ -24,7 +24,11 @@ str(flights)
 fl <- mutate(flights, difftime = actualelapsedtime - crselapsedtime)
 fl_PHLIND <- filter(fl, origin=="PHL", dest=="IND")
 fl_PHLIND <- collect(fl_PHLIND)
-fl_1103 <- filter(fl_PHLIND,flightnum==1103)
-ggplot(aes(x=factor(year),y=actualelapsedtime),data=fl_1103)+geom_boxplot()
-ggplot(aes(x=factor(year),y=crselapsedtime),data=fl_1103)+geom_boxplot()
+t<-table(fl_PHLIND$flightnum)
+t[order(t)]
+fl_1276 <- filter(fl_PHLIND,flightnum==1276)
+fl_1276$date<-with(fl_1276, ISOdate(year, month, dayofmonth))
+ggplot(aes(x=date,y=actualelapsedtime,color="ACTUAL"),data=fl_1276)+
+  geom_smooth()+
+  geom_smooth(aes(y=crselapsedtime,color="SCHEDULED"))
 
