@@ -32,5 +32,3 @@ ggplot(aes(x=date,y=actualelapsedtime,color="ACTUAL"),data=fl_1276)+
   geom_smooth()+
   geom_smooth(aes(y=crselapsedtime,color="SCHEDULED"))
 
-ggplot(aes(x=factor(year),y=crselapsedtime),data=fl_1103)+geom_boxplot()
-
