@@ -81,3 +81,15 @@ for(i in 1:n){
 which(!is.na(carriers25))
 carriers[378,]
 #378 is "CO"
+
+CO <- filter(fl,uniquecarrier=="CO")
+CO_by <- group_by(CO, year)
+s <- summarize(CO_by, n())
+sc<-collect(s)
+sc[order(sc$year),]
+print(sc)
+fl1987<-filter(fl, year==1987)
+fl1987_by<-group_by(fl1987,uniquecarrier)
+a<-summarize(fl1987_by,n())
+b<-collect(a)
+b
