@@ -92,3 +92,17 @@ Population question: We should gather ideas for how we will use the “whole dat
 
 Things that I am having difficulty doing:
 I was thinking we could “smooth” the graph out by just plotting monthly averages (instead of daily averages). I can group by and summarize to get monthly averages, but am having trouble remembering how to set up year and month into a date that I can graph. 
+
+#====================================================================
+
+Thoughts from Gina 5/6 9:30pm
+
+I added code to addisons code to take all flights from pdx to sfo, mutated to add a difftime variable (actual - crd), graph difftime by carrier. 
+
+What graph shows:
+only United and Alaskan had flights for entire 25 years. Both show evidence of padding, United more than Alaskan. 
+
+I tried to do this with Addisons but the graph wouldn’t render due to not enough values.
+
+
+

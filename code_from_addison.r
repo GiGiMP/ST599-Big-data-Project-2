@@ -1,4 +1,4 @@
-#install.packages("RPostgreSQL")
+install.packages("RPostgreSQL")
 library(dplyr)
 library(RPostgreSQL)
 library(ggplot2)
@@ -35,6 +35,7 @@ ggplot(aes(x=date,y=actualelapsedtime,color="ACTUAL"),data=fl_1276)+
   geom_smooth(aes(y=crselapsedtime,color="SCHEDULED")) +
   big_font
 
+<<<<<<< HEAD
 fl_PDXSFO_UA <- filter(fl, origin=="PDX", dest=="SFO",uniquecarrier=="UA")
 fl_PDXSFO_UA <- collect(fl_PDXSFO_UA)
 fl_PDXSFO_UA$date<-with(fl_PDXSFO_UA, ISOdate(year, month, dayofmonth))
@@ -42,3 +43,15 @@ ggplot(aes(x=date,y=actualelapsedtime,color="ACTUAL"),data=fl_PDXSFO_UA)+
   geom_smooth()+
   geom_smooth(aes(y=crselapsedtime,color="SCHEDULED"))
 
+=======
+# graph of difftime (actual - crs) for PDX to SFO by carrier
+fl_PDXSFO<-filter(fl, origin=="PDX", dest=="SFO")
+fl_PDXSFO<-collect(fl_PDXSFO)
+fl_PDXSFO$date<-with(fl_PDXSFO, ISOdate(year, month, dayofmonth))
+ggplot(aes(x=date, y=difftime, color = uniquecarrier), data=fl_PDXSFO) +
+  geom_smooth() +
+  ggtitle("PDX to SFO Difference by Carrier") +
+  big_font
+# from this graph, it looks like only United and AS (Alaskan?) are the only 
+# carriers with full 25 years of flights from pdx to sfo.
+>>>>>>> 425da0d71c5142bb900c031bd5b4179067c475eb
