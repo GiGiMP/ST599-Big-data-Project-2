@@ -1,8 +1,12 @@
-install.packages("RPostgreSQL")
+#install.packages("RPostgreSQL")
 library(dplyr)
 library(RPostgreSQL)
 library(ggplot2)
 big_font <- theme_grey(base_size = 24)
+
+#change file path as needed"
+carriers <-read.csv("C:/Users/Addison/Documents/ST599-Big-data-Project-2/carriers.csv",
+                    stringsAsFactors=F)
 
 endpoint <- "flights.cwick.co.nz"
 user <- "student"
@@ -15,6 +19,7 @@ ontime <- src_postgres("ontime",
                        password = password)
 
 flights <- tbl(ontime, "flights")
+fl <- mutate(flights, difftime = crselapsedtime- actualelapsedtime)
 head(flights)
 str(flights)
 #head(select(flights,weatherdelay),100L)
@@ -22,7 +27,7 @@ str(flights)
 
 #' remove canceled flights
 
-fl <- mutate(flights, difftime = crselapsedtime- actualelapsedtime)
+
 
 fl_PHLIND <- filter(fl, origin=="PHL", dest=="IND")
 fl_PHLIND <- collect(fl_PHLIND)
@@ -53,5 +58,26 @@ ggplot(aes(x=date, y=difftime, color = uniquecarrier), data=fl_PDXSFO) +
   ggtitle("PDX to SFO Difference by Carrier") +
   big_font
 # from this graph, it looks like only United and AS (Alaskan?) are the only 
-# carriers with full 25 years of flights from pdx to sfo.
+# carriers with full 25 years of flights from pdx to 
 
+
+fl <- mutate(flights, difftime = crselapsedtime- actualelapsedtime)
+
+n<-dim(carriers)[1]
+carriers25 <- rep(NA, n)
+for(i in 1:n){
+  c <- carriers[i,1]
+  fc <- filter(fl,uniquecarrier==c)
+  fc_by <- group_by(fc, year)
+  s <- summarize(fc_by, n())
+  sc<-collect(s)
+  print(c(i,c,dim(sc)))
+  if(dim(sc)[1]==25){
+    carriers25[i]=c
+    print("accepted")
+  }
+}
+
+which(!is.na(carriers25))
+carriers[378,]
+#378 is "CO"
